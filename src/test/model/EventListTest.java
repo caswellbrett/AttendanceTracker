@@ -17,9 +17,10 @@ public class EventListTest {
 
     @Test
     public void constructorTest() {
-        List<String> eventNames = eventList.getEventNameList();
-        List<String> eventDates = eventList.getEventDateList();
-        List<List<String>> eventAttendeesList = eventList.getEventAttendeesList();
+        EventList newEventList = new EventList();
+        List<String> eventNames = newEventList.getEventNameList();
+        List<String> eventDates = newEventList.getEventDateList();
+        List<List<String>> eventAttendeesList = newEventList.getEventAttendeesList();
         assertEquals(0, eventNames.size());
         assertEquals(0,eventDates.size());
         assertEquals(0,eventAttendeesList.size());
@@ -119,7 +120,7 @@ public class EventListTest {
         eventList.addEventAttendees(attendees1);
         List<List<String>> attendeesLists = eventList.getEventAttendeesList();
         assertEquals(1, attendeesLists.size());
-        List<String> eventAttendees1 = attendeesLists.get(0);
+        List<String> eventAttendees1 = eventList.getEventAttendees(0);
         assertEquals("Bryce", eventAttendees1.get(0));
 
         ArrayList<String> attendees2 = new ArrayList<>();
@@ -128,7 +129,7 @@ public class EventListTest {
         eventList.addEventAttendees(attendees2);
         attendeesLists = eventList.getEventAttendeesList();
         assertEquals(2, attendeesLists.size());
-        List<String> eventAttendees2 = attendeesLists.get(1);
+        List<String> eventAttendees2 = eventList.getEventAttendees(1);
         assertEquals("Ben", eventAttendees2.get(1));
     }
 
