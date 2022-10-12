@@ -113,9 +113,13 @@ public class EventListTest {
 
     @Test
     public void findEventIndexTest() {
+        assertEquals(0, eventList.findEventIndex("Swim Practice"));
+
         eventList.addEvent(swimPractice);
         eventList.addEvent(funeral);
         assertEquals(0, eventList.findEventIndex("Swim Practice"));
         assertEquals(1, eventList.findEventIndex("Funeral"));
+
+        assertEquals(2, eventList.findEventIndex("Party"));
     }
 }

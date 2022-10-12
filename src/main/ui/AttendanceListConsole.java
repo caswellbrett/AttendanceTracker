@@ -31,7 +31,7 @@ public class AttendanceListConsole {
 
         while (addMore) {
             presentOptions();
-            String chosenOption = scanner.next();
+            String chosenOption = scanner.nextLine();
             if (chosenOption.equals("a")) {
                 addEventName();
                 addEventDate();
@@ -56,7 +56,7 @@ public class AttendanceListConsole {
     //          and list of attendees if the event is found (prints other message if not found)
     private void searchEvent() {
         System.out.println("Please enter the name of the event you wish to search: ");
-        String searchName = scanner.next();
+        String searchName = scanner.nextLine();
         if (userList.isNameTaken(searchName)) {
             int index = userList.findEventIndex(searchName);
             System.out.println("Event name: " + userList.getEventsList().get(index).getName());
@@ -75,7 +75,7 @@ public class AttendanceListConsole {
     // EFFECTS: asks for name of event to add to list and asks again if event name already taken
     private void addEventName() {
         System.out.println("Please add a name for the event you wish to add: ");
-        String nameEntry = scanner.next();
+        String nameEntry = scanner.nextLine();
         if (!userList.isNameTaken(nameEntry)) {
             nameToAdd = nameEntry;
         } else {
@@ -91,11 +91,13 @@ public class AttendanceListConsole {
     public void addEventDate() {
         System.out.println("Please add the year when the event took place (ex. \"2003\"):");
         int yearInput = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Please add the first three letters of the month then the event "
                 + "took place (ex. \"Feb\" for February):");
-        String monthInput = scanner.next();
+        String monthInput = scanner.nextLine();
         System.out.println("Please add the day of then month when the event took place (ex. \"13\"):");
         int dayInput = scanner.nextInt();
+        scanner.nextLine();
         if (userList.isValidDayInput(monthInput, dayInput) && userList.isValidMonthInput(monthInput)) {
             dateToAdd = userList.makeEventDate(yearInput, monthInput, dayInput);
         } else {
@@ -107,12 +109,12 @@ public class AttendanceListConsole {
     // MODIFIES: this
     // EFFECTS: generates a list of attendees for an event and adds the list to the list of events' attendees
     public void addEventAttendees() {
-        System.out.println("Add event attendees one-by-one. When you are done, type \"done\":");
+        System.out.println("Add the names of event attendees one-by-one. When you are done, type \"done\":");
         ArrayList<String> attendees = new ArrayList<>();
         boolean notDone = true;
         while (notDone) {
             System.out.println("Add an attendee:");
-            String attendee = scanner.next();
+            String attendee = scanner.nextLine();
             if (attendee.toLowerCase().equals("done")) {
                 notDone = false;
             } else {
