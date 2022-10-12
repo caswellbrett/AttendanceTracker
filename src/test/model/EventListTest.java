@@ -9,21 +9,32 @@ import java.util.List;
 
 public class EventListTest {
     EventList eventList;
+    Event event;
+    List<String> swimAttendees;
+    Event swimPractice;
+
+    List<String> funeralAttendees;
+    Event funeral;
 
     @BeforeEach
     public void setup() {
         eventList = new EventList();
+
+        swimAttendees = new ArrayList<>();
+        swimAttendees.add("Liam");
+        swimAttendees.add("Darren");
+        swimAttendees.add("Matthew");
+        swimPractice = new Event("Swim Practice", "Oct 12, 2022", swimAttendees);
+
+        funeralAttendees = new ArrayList<>();
+        funeral = new Event("Funeral", "Dec 25, 2030", funeralAttendees);
+
+
     }
 
     @Test
     public void constructorTest() {
-        EventList newEventList = new EventList();
-        List<String> eventNames = newEventList.getEventNameList();
-        List<String> eventDates = newEventList.getEventDateList();
-        List<List<String>> eventAttendeesList = newEventList.getEventAttendeesList();
-        assertEquals(0, eventNames.size());
-        assertEquals(0,eventDates.size());
-        assertEquals(0,eventAttendeesList.size());
+        assertEquals(0, eventList.getEventsList().size());
     }
 
     @Test
@@ -73,76 +84,38 @@ public class EventListTest {
     }
 
     @Test
-    public void addEventDateTest() {
-        eventList.addEventDate(1998,"jAN",30);
-        eventList.addEventDate(2003,"Feb",27);
-        eventList.addEventDate(1198,"MaR",31);
-        String janDate = eventList.getEventDate(0);
-        String febDate = eventList.getEventDate(1);
-        String marDate = eventList.getEventDate(2);
-        assertEquals("Jan 30, 1998", janDate);
-        assertEquals("Feb 27, 2003", febDate);
-        assertEquals("Mar 31, 1198", marDate);
-    }
+    public void addEventTest() {
+        eventList.addEvent(swimPractice);
+        eventList.addEvent(funeral);
 
-    @Test
-    public void addEventNameTest() {
-        eventList.addEventName("Swim Practice");
-        List<String> names = eventList.getEventNameList();
-        assertEquals(1, names.size());
-        String name = eventList.getEventName(0);
-        assertEquals("Swim Practice", name);
+        assertEquals(2, eventList.getEventsList().size());
+        assertEquals("Swim Practice", eventList.getEventsList().get(0).getName());
+        assertEquals("Funeral", eventList.getEventsList().get(1).getName());
 
-        eventList.addEventName("Sara's Party");
-        names = eventList.getEventNameList();
-        assertEquals(2, names.size());
-        name = eventList.getEventName(1);
-        assertEquals("Sara's Party", name);
     }
 
     @Test
     public void isNameTakenTest() {
-        eventList.addEventName("Swim Practice");
-        eventList.addEventName("Broadway Show");
+        eventList.addEvent(swimPractice);
+        eventList.addEvent(funeral);
+
         assertTrue(eventList.isNameTaken("Swim Practice"));
-        assertTrue(eventList.isNameTaken("Broadway Show"));
-        assertFalse(eventList.isNameTaken("Soccer Game"));
-        eventList.addEventName("Soccer Game");
-        assertTrue(eventList.isNameTaken("Soccer Game"));
+        assertTrue(eventList.isNameTaken("Funeral"));
+        assertFalse(eventList.isNameTaken("Halloween Party"));
     }
 
     @Test
-    public void addEventAttendeesTest() {
-        ArrayList<String> attendees1 = new ArrayList<>();
-        attendees1.add("Bryce");
-        attendees1.add("Sara");
-        attendees1.add("Jean");
-        eventList.addEventAttendees(attendees1);
-        List<List<String>> attendeesLists = eventList.getEventAttendeesList();
-        assertEquals(1, attendeesLists.size());
-        List<String> eventAttendees1 = eventList.getEventAttendees(0);
-        assertEquals("Bryce", eventAttendees1.get(0));
-
-        ArrayList<String> attendees2 = new ArrayList<>();
-        attendees2.add("Stuart");
-        attendees2.add("Ben");
-        eventList.addEventAttendees(attendees2);
-        attendeesLists = eventList.getEventAttendeesList();
-        assertEquals(2, attendeesLists.size());
-        List<String> eventAttendees2 = eventList.getEventAttendees(1);
-        assertEquals("Ben", eventAttendees2.get(1));
+    public void makeEventDateTest() {
+        assertEquals("Jan 30, 1998", eventList.makeEventDate(1998, "jAN", 30));
+        assertEquals("Feb 27, 2003", eventList.makeEventDate(2003, "Feb", 27));
+        assertEquals("Mar 31, 1198", eventList.makeEventDate(1198, "MaR", 31));
     }
 
     @Test
     public void findEventIndexTest() {
-        eventList.addEventName("Charity Event");
-        eventList.addEventName("Swim Practice");
-        eventList.addEventName("Camp Retreat");
-        assertEquals(0, eventList.findEventIndex("Charity Event"));
-        assertEquals(1, eventList.findEventIndex("Swim Practice"));
-        assertEquals(2, eventList.findEventIndex("Camp Retreat"));
+        eventList.addEvent(swimPractice);
+        eventList.addEvent(funeral);
+        assertEquals(0, eventList.findEventIndex("Swim Practice"));
+        assertEquals(1, eventList.findEventIndex("Funeral"));
     }
-
-
-
 }

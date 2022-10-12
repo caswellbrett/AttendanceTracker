@@ -1,5 +1,6 @@
 package ui;
 
+import model.Event;
 import model.EventList;
 
 import java.util.ArrayList;
@@ -10,6 +11,9 @@ import java.util.List;
 public class AttendanceListConsole {
     private EventList userList = new EventList();
     private Scanner scanner = new Scanner(System.in);
+    private String nameToAdd;
+    private String dateToAdd;
+    private List<String> attendeesToAdd;
 
     // EFFECTS: runs console interface and welcomes user to Attendance Tracker
     public AttendanceListConsole() {
@@ -32,6 +36,8 @@ public class AttendanceListConsole {
                 addEventName();
                 addEventDate();
                 addEventAttendees();
+                Event userEvent = new Event(nameToAdd, dateToAdd, attendeesToAdd);
+                userList.addEvent(userEvent);
                 System.out.println("Event added!");
             } else if (chosenOption.equals("s")) {
                 searchEvent();
@@ -71,7 +77,7 @@ public class AttendanceListConsole {
         System.out.println("Please add a name for the event you wish to add: ");
         String nameEntry = scanner.next();
         if (!userList.isNameTaken(nameEntry)) {
-            userList.addEventName(nameEntry);
+            nameToAdd = nameEntry;
         } else {
             System.out.println("The name entered is either too short or "
                     + "already exists in your events list. Please try again.");
@@ -91,7 +97,7 @@ public class AttendanceListConsole {
         System.out.println("Please add the day of then month when the event took place (ex. \"13\"):");
         int dayInput = scanner.nextInt();
         if (userList.isValidDayInput(monthInput, dayInput) && userList.isValidMonthInput(monthInput)) {
-            userList.addEventDate(yearInput, monthInput, dayInput);
+            dateToAdd = userList.makeEventDate(yearInput, monthInput, dayInput);
         } else {
             System.out.println("Invalid input. Please try again.");
             addEventDate();
@@ -113,7 +119,7 @@ public class AttendanceListConsole {
                 attendees.add(attendee);
             }
         }
-        userList.addEventAttendees(attendees);
+        attendeesToAdd = attendees;
     }
 
     // MODIFIES: this
