@@ -59,10 +59,10 @@ public class AttendanceListConsole {
         String searchName = scanner.next();
         if (userList.isNameTaken(searchName)) {
             int index = userList.findEventIndex(searchName);
-            System.out.println("Event name: " + userList.getEventName(index));
-            System.out.println("Event date: " + userList.getEventDate(index));
+            System.out.println("Event name: " + userList.getEventsList().get(index).getName());
+            System.out.println("Event date: " + userList.getEventsList().get(index).getDate());
             System.out.println("Event attendees:");
-            List<String> attendees = userList.getEventAttendees(index);
+            List<String> attendees = userList.getEventsList().get(index).getAttendees();
             for (String attendee : attendees) {
                 System.out.println(attendee);
             }

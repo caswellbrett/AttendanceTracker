@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 // represents a list of events
 public class EventList {
-    // private List<String> eventNameList = new ArrayList<>();
-    // private List<String> eventDateList = new ArrayList<>();
-    // private List<List<String>> eventAttendeesList = new ArrayList<>();
     private List<Event> listOfEvents;
 
     // EFFECTS: instantiates an event list
@@ -30,33 +27,11 @@ public class EventList {
     // REQUIRES:    nameEntry cannot already be found in list of events
     //              date must be valid date, with month being first 3 letters of valid month and
     //              day being a day of the applicable month
+    // MODIFIES:    this
+    // EFFECTS:     adds an event created by the user to our event list
     public void addEvent(Event event) {
         listOfEvents.add(event);
     }
-
-    // REQUIRES: nameEntry cannot already be found in eventNameList
-    // MODIFIES: this
-    // EFFECTS: adds an event name to our list of event names
-    // public void addEventName(String nameEntry) {
-    //     eventNameList.add(nameEntry);
-    // }
-
-    // REQUIRES:    monthInput must be the first three letters of the name of a calendar month (ex. "feb")
-    //              dayInput must > 0 and a day that can be found in the given month (ex. < 31 for January)
-    // MODIFIES:    this
-    // EFFECTS:     adds the given year, month, and day to our list of event dates in the proper format
-    //              (ex. "Jan 13, 2003")
-    // public void addEventDate(int yearInput, String monthInput, int dayInput) {
-    //     String eventDate = (monthInput.substring(0,1).toUpperCase()
-    //             + monthInput.substring(1,3).toLowerCase() + " " + dayInput + ", " + yearInput);
-    //     eventDateList.add(eventDate);
-    //     }
-
-    // MODIFIES: this
-    // EFFECTS: adds the list of attendees from a given event to the list of event attendees list
-    // public void addEventAttendees(ArrayList<String> eventAttendees) {
-    // eventAttendeesList.add(eventAttendees);
-    // }
 
     // REQUIRES: searchName is the name of an event in our list of events
     // EFFECTS: returns the index of the event list that the user wishes to search
@@ -70,22 +45,6 @@ public class EventList {
             index++;
         }
         return index;
-    }
-
-    public String getEventName(int index) {
-        return listOfEvents.get(index).getName();
-    }
-
-    public String getEventDate(int index) {
-        return listOfEvents.get(index).getDate();
-    }
-
-    public List<String> getEventAttendees(int index) {
-        return listOfEvents.get(index).getAttendees();
-    }
-
-    public List<Event> getEventsList() {
-        return listOfEvents;
     }
 
     // REQUIRES: month input is the first 3 letters of a month in a calendar
@@ -139,15 +98,7 @@ public class EventList {
         return eventDate;
     }
 
-    // public List<String> getEventNameList() {
-    // return eventNameList;
-    // }
-
-    //public List<String> getEventDateList() {
-    // return eventDateList;
-    // }
-
-    // public List<List<String>> getEventAttendeesList() {
-    // return eventAttendeesList;
-    // }
+    public List<Event> getEventsList() {
+        return listOfEvents;
+    }
 }
