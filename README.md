@@ -39,3 +39,10 @@ rate over the season.
   - As a user, I wish to search for a
   particular event and see how many people
   attended that event.
+- P1 user stories
+    - As a user, I want to be able to save my
+  list of events in Attendance Tracker to a 
+  file
+    - As a user, I want to be able to load my
+  events from Attendance Tracker from file
+  

@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.List;
 
 // represents an event with a name, date, and list of attendees
-public class Event {
+public class Event implements Writable {
     private String name;
     private String date;
     private List<String> attendees;
@@ -13,6 +16,15 @@ public class Event {
         this.name = name;
         this.date = date;
         this.attendees = attendees;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("date", date);
+        json.put("attendees", attendees);
+        return json;
     }
 
     public String getName() {

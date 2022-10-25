@@ -1,15 +1,21 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.List;
 import java.util.ArrayList;
 
 // represents a list of events
-public class EventList {
+public class EventList implements Writable {
     private List<Event> listOfEvents;
+    private String name;
 
     // EFFECTS: instantiates an event list
-    public EventList() {
+    public EventList(String name) {
         listOfEvents = new ArrayList<>();
+        this.name = name;
     }
 
     // EFFECTS: Returns true if the given event name is already an event name in our list
@@ -87,6 +93,26 @@ public class EventList {
                 || monthInput.equals("dec");
     }
 
+    // EFFECTS: transforms event list in JSON file
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("events", eventsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns events in eventlist as JSON array
+    private JSONArray eventsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Event e : listOfEvents) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
+    }
+
 
     // REQUIRES:    month input is the first three letters of a month on the calendar
     //              day input is an appropriate date for the given month
@@ -100,5 +126,13 @@ public class EventList {
 
     public List<Event> getEventsList() {
         return listOfEvents;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

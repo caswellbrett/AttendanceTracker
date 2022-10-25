@@ -18,7 +18,7 @@ public class EventListTest {
 
     @BeforeEach
     public void setup() {
-        eventList = new EventList();
+        eventList = new EventList("Event List 1");
 
         swimAttendees = new ArrayList<>();
         swimAttendees.add("Liam");
