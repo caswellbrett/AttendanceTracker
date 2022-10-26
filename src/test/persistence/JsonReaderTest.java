@@ -59,4 +59,25 @@ public class JsonReaderTest extends JsonTest {
             fail("Couldn't read from file");
         }
     }
+
+    @Test
+    void testReaderEventListNoAttendees() {
+        JsonReader reader = new JsonReader("./data/testReaderEventListNoAttendees.json");
+        List<String> attendees1 = new ArrayList<>();
+
+        List<String> attendees2 = new ArrayList<>();
+        attendees2.add("Maiya");
+        try {
+            EventList el = reader.read();
+            assertEquals("Event List 1", el.getName());
+            List<Event> events = el.getEventsList();
+            assertEquals(2, events.size());
+            toJsonTest("Practice", "October 25, 2005", attendees1, events.get(0));
+            toJsonTest("Birthday", "November 2, 2022", attendees2, events.get(1));
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+
 }

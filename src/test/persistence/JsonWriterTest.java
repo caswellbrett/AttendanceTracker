@@ -75,4 +75,33 @@ public class JsonWriterTest extends JsonTest {
             fail("IOException incorrectly thrown.");
         }
     }
+
+    @Test
+    void testWriterEventListNoAttendees() {
+        List<String> attendees1 = new ArrayList<>();
+
+        List<String> attendees2 = new ArrayList<>();
+        attendees2.add("Maiya");
+        try {
+            EventList el = new EventList("Event List 1");
+            el.addEvent(new Event("Practice", "October 25, 2005", attendees1));
+            el.addEvent(new Event("Birthday", "November 2, 2022", attendees2));
+            JsonWriter writer = new JsonWriter("./data/testWriterEventListNoAttendees.json");
+            writer.open();
+            writer.write(el);
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testWriterEventListNoAttendees.json");
+            el = reader.read();
+            assertEquals("Event List 1", el.getName());
+            List<Event> events = el.getEventsList();
+            assertEquals(2, events.size());
+            toJsonTest("Practice", "October 25, 2005", attendees1, events.get(0));
+            toJsonTest("Birthday", "November 2, 2022", attendees2, events.get(1));
+
+        } catch (IOException e) {
+            fail("IOException incorrectly thrown.");
+        }
+    }
+
 }

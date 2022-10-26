@@ -1,0 +1,15 @@
+{
+    "name": "Event List 1",
+    "events": [
+        {
+            "date": "October 25, 2005",
+            "attendees": [],
+            "name": "Practice"
+        },
+        {
+            "date": "November 2, 2022",
+            "attendees": ["Maiya"],
+            "name": "Birthday"
+        }
+    ]
+}
