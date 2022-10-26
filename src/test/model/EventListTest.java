@@ -9,7 +9,6 @@ import java.util.List;
 
 public class EventListTest {
     EventList eventList;
-    Event event;
     List<String> swimAttendees;
     Event swimPractice;
 
@@ -121,5 +120,11 @@ public class EventListTest {
         assertEquals(1, eventList.findEventIndex("Funeral"));
 
         assertEquals(2, eventList.findEventIndex("Party"));
+    }
+
+    @Test
+    public void setNameTest() {
+        eventList.setName("Event List 2");
+        assertEquals("Event List 2", eventList.getName());
     }
 }
