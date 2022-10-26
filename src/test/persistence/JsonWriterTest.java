@@ -31,7 +31,7 @@ public class JsonWriterTest extends JsonTest {
     void testWriterEmptyEventList() {
         try {
             EventList el = new EventList("Event List 1");
-            JsonWriter writer = new JsonWriter("./data/testReaderEmptyEventList.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyEventList.json");
             writer.open();
             writer.write(el);
             writer.close();
@@ -58,7 +58,7 @@ public class JsonWriterTest extends JsonTest {
             EventList el = new EventList("Event List 1");
             el.addEvent(new Event("Practice", "October 25, 2005", attendees1));
             el.addEvent(new Event("Birthday", "November 2, 2022", attendees2));
-            JsonWriter writer = new JsonWriter("./data/testReaderGeneralEventList.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralEventList.json");
             writer.open();
             writer.write(el);
             writer.close();
