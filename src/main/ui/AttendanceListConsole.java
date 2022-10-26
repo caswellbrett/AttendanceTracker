@@ -16,7 +16,7 @@ import java.util.List;
 
 // the console interface of the Attendance List project
 public class AttendanceListConsole {
-    private EventList userList = new EventList("No name yet");
+    private EventList userList = new EventList("your event list");
     private Scanner scanner = new Scanner(System.in);
     private String nameToAdd;
     private String dateToAdd;
@@ -29,9 +29,9 @@ public class AttendanceListConsole {
     public AttendanceListConsole() {
         System.out.println("Welcome to Attendance Tracker, "
                 + "where you can track attendance lists for all your events!");
-        System.out.println("Please enter the name of your attendance tracker account:");
-        String userListName = scanner.nextLine();
-        userList.setName(userListName);
+//        System.out.println("Please enter the name of your attendance tracker account:");
+//        String userListName = scanner.nextLine();
+//        userList.setName(userListName);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runConsole();
@@ -163,7 +163,7 @@ public class AttendanceListConsole {
             jsonWriter.open();
             jsonWriter.write(userList);
             jsonWriter.close();
-            System.out.println("Saved " + userList.getName() + " to " + JSON_STORE);
+            System.out.println("Saved " + userList.getName() + " to " + JSON_STORE + ".");
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
