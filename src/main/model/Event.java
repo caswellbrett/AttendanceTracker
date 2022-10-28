@@ -11,6 +11,8 @@ public class Event implements Writable {
     private String date;
     private List<String> attendees;
 
+    // REQUIRES: name of event does not already exist in event list and
+    //          date is an acceptable date format (ex. Feb 12, 2010)
     // EFFECTS: constructs an event with a name, date, and attendee list
     public Event(String name, String date, List<String> attendees) {
         this.name = name;
@@ -18,6 +20,7 @@ public class Event implements Writable {
         this.attendees = attendees;
     }
 
+    // EFFECTS: converts event instance to JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

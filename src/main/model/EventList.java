@@ -102,7 +102,7 @@ public class EventList implements Writable {
         return json;
     }
 
-    // EFFECTS: returns events in eventlist as JSON array
+    // EFFECTS: returns events in event list as JSON array
     private JSONArray eventsToJson() {
         JSONArray jsonArray = new JSONArray();
 
