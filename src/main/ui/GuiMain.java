@@ -221,7 +221,3 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         new GuiMain();
     }
 }
-
-// TODO create user stories thingies
-// TODO implement a graphic
-// TODO create documentation

@@ -45,34 +45,26 @@ rate over the season.
   file
     - As a user, I want to be able to load my
   events from Attendance Tracker from file
-  
-## Instructions for Grader
-1) Run the "GuiMain" class
-2) To add an event to the event list panel,
-press the "Add Event" button found on the left
-side of the main window. A new window should
-pop up.
-   1) Add the name and date of the event you
-wish to create and click "Add Event" when you
-are finished.
-   2) The newly created event's name should be
-visible on the left side of the main window.
-You may continue to add event by repeating step
-      (i) or you may close the 'Add Event' panel
-3) To add attendees to a desired event, click on
-the desired event in the event list on the left
-side of the main window.
-   1) Click the 'Add Attendee' button. A new 
-window should appear.
-   2) Add the name of the attendee into the
-text field and then click the 'Add Attendee'
-button. The attendee should appear on the
-right side of the main window.
-   3) You may continue to add attendees to this
-event or you may add more attendees by repeating
-step (ii).
-4) To save/load event lists, select the
-'save button' or 'load button' respectively.
-When clicking the load button, the previously
-saved event list should appear on the left
-side of the main window.
+
+# Instructions for Grader
+- You can generate the first required event 
+related to adding Xs to a Y by clicking the 
+'add event' button on the main window. A new
+'add event' window will appear. After filling in 
+the event's name and date, click 'Add event' 
+on the pop-up window.
+- You can generate the second required event 
+related to adding Xs to a Y by clicking the 
+'add attendee' button. A new window will appear.
+Add the name of the attendee and click the
+'add attendee' button on the new window.
+- You can locate my visual component by
+directing your attention to the lower-left
+corner of the application's main window. You
+will find a logo of a calendar.
+- You can save the state of my application by
+clicking the 'save file' button on the main
+window.
+- You can reload the state of my application by
+clicking the 'load file' button on the main
+window.
