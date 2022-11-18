@@ -46,3 +46,33 @@ rate over the season.
     - As a user, I want to be able to load my
   events from Attendance Tracker from file
   
+## Instructions for Grader
+1) Run the "GuiMain" class
+2) To add an event to the event list panel,
+press the "Add Event" button found on the left
+side of the main window. A new window should
+pop up.
+   1) Add the name and date of the event you
+wish to create and click "Add Event" when you
+are finished.
+   2) The newly created event's name should be
+visible on the left side of the main window.
+You may continue to add event by repeating step
+      (i) or you may close the 'Add Event' panel
+3) To add attendees to a desired event, click on
+the desired event in the event list on the left
+side of the main window.
+   1) Click the 'Add Attendee' button. A new 
+window should appear.
+   2) Add the name of the attendee into the
+text field and then click the 'Add Attendee'
+button. The attendee should appear on the
+right side of the main window.
+   3) You may continue to add attendees to this
+event or you may add more attendees by repeating
+step (ii).
+4) To save/load event lists, select the
+'save button' or 'load button' respectively.
+When clicking the load button, the previously
+saved event list should appear on the left
+side of the main window.
