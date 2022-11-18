@@ -20,6 +20,10 @@ public class Event implements Writable {
         this.attendees = attendees;
     }
 
+    public void addAttendee(String attendee) {
+        attendees.add(attendee);
+    }
+
     // EFFECTS: converts event instance to JSON object
     @Override
     public JSONObject toJson() {
@@ -42,4 +46,8 @@ public class Event implements Writable {
         return this.attendees;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

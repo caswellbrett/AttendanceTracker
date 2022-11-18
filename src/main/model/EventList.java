@@ -128,6 +128,14 @@ public class EventList implements Writable {
         return listOfEvents;
     }
 
+    public List<String> getEventNames() {
+        List<String> eventNames = new ArrayList<>();
+        for (Event event : listOfEvents) {
+            eventNames.add(event.getName());
+        }
+        return eventNames;
+    }
+
     public String getName() {
         return name;
     }
