@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.imageio.*;
 import java.io.File;
 
+// represents the main panel that is initially ran when the program starts
 public class GuiMain extends JPanel implements ActionListener, ListSelectionListener {
 
     private JFrame frame;
@@ -42,6 +43,7 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
     private JLabel logoPic;
     private JLabel logoText;
 
+    // EFFECTS: creates the main window with an event list, attendance list, buttons, and a logo
     public GuiMain() {
         eventList = new EventList("User's Events");
         jsonReader = new JsonReader(JSON_STORE);
@@ -58,6 +60,8 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         frame.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates the JFrame where all the main window's components will be placed
     public void createFrame() {
         frame = new JFrame("Attendance Tracker");
         frame.setLayout(new GridLayout(1, 2));
@@ -66,6 +70,8 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a panel containing main panel's buttons
     public void createButtonPanel() {
         saveButton = new JButton("Save file");
         loadButton = new JButton("Load file");
@@ -86,6 +92,8 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         loadButton.addActionListener(this);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates the events list and the attendees list panels
     public void createLists() {
         eventListModel = new DefaultListModel<>();
         guiEventList = new JList<>();
@@ -101,6 +109,8 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         attendeeScroll = new JScrollPane(guiAttendeeList);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a logo to be displayed on main panel
     public void createLogo() {
         logoPanel = new JPanel();
         logoPanel.setLayout(new FlowLayout());
@@ -127,6 +137,8 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         logoPanel.add(logoText);
     }
 
+    // MODIFIES: this
+    // EFFECTS: combines button panel, logo panel, and event list panel with preferred layout
     public void createLeftPanel() {
         leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
@@ -159,6 +171,8 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: employs the intended action of a button if pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == eventAddButton) {
@@ -175,6 +189,8 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the value of attendee panel when a different event is selected
     @Override
     public void valueChanged(ListSelectionEvent e) {
         attendeeListModel.clear();
@@ -200,6 +216,7 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         return eventList;
     }
 
+    // EFFECTS: runs the main window
     public static void main(String[] args) {
         new GuiMain();
     }

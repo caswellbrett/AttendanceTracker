@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+// represents the window ran when you wish to add an event to AttendanceTracker
 public class AddEventWindow extends JFrame implements ActionListener {
     private JFrame addEventFrame;
     private JPanel addEventPanel;
@@ -25,6 +26,8 @@ public class AddEventWindow extends JFrame implements ActionListener {
     private static final int HEIGHT = 300;
     private static final int WIDTH = 300;
 
+    // REQUIRES: gui is a functional main panel
+    // EFFECTS: creates an 'Add Event' window, where a player can add info on events they wish to add
     public AddEventWindow(GuiMain gui) {
         this.gui = gui;
         eventList = gui.getEventList();
@@ -33,6 +36,7 @@ public class AddEventWindow extends JFrame implements ActionListener {
         addEventFrame.setSize(WIDTH, HEIGHT);
         addEventFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         addEventFrame.add(addEventPanel);
+        addEventFrame.setTitle("Adding an Event");
         addEventPanel.setLayout(new BoxLayout(addEventPanel, BoxLayout.Y_AXIS));
 
         nameLabel.setAlignmentX(LEFT_ALIGNMENT);
@@ -54,6 +58,8 @@ public class AddEventWindow extends JFrame implements ActionListener {
         addEventFrame.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates instances of objects required in the window
     public void initializeComponents() {
         addEventFrame = new JFrame();
         addEventPanel = new JPanel();
@@ -66,6 +72,9 @@ public class AddEventWindow extends JFrame implements ActionListener {
         nameBox = new JTextField();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a panel to be added to 'Add Event' panel, allowing user to input year,
+    //          month, day, and name
     public void createDatePanel() {
         datePanel = new JPanel();
         datePanel.setLayout(new FlowLayout());
@@ -82,12 +91,15 @@ public class AddEventWindow extends JFrame implements ActionListener {
         addEventPanel.add(datePanel);
     }
 
+    // EFFECTS: returns an array of the months of the year
     public String[] getMonths() {
         String[] monthList = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
                 "Nov", "Dec"};
         return monthList;
     }
 
+    // MODIFIES: this, gui
+    // EFFECTS: adds an event if 'add event' inputs are appropriate
     public void makeEvent() {
         try {
             String yearString = yearBox.getText();
@@ -103,12 +115,14 @@ public class AddEventWindow extends JFrame implements ActionListener {
                 gui.getGuiEvents().addElement(userEvent);
             }
         } catch (NumberFormatException e) {
-            new DateErrorWindow();
+            // the code should not do anything if this error is caught
         } catch (NullPointerException e) {
-            new DateErrorWindow();
+            // the code should not do anything if this error is caught
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: makes an event if add event button is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addButton) {
