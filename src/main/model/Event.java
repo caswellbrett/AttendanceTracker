@@ -20,6 +20,9 @@ public class Event implements Writable {
         this.attendees = attendees;
     }
 
+    // REQUIRES: !attendee.equals("")
+    // MODIFIES: this
+    // EFFECTS: adds an attendee to the list of attendees
     public void addAttendee(String attendee) {
         attendees.add(attendee);
     }
@@ -46,6 +49,7 @@ public class Event implements Writable {
         return this.attendees;
     }
 
+    // EFFECTS: returns the name of the event
     @Override
     public String toString() {
         return name;

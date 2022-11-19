@@ -36,4 +36,17 @@ public class EventTest {
         assertEquals("Dec 25, 2030", funeral.getDate());
         assertEquals(0, funeral.getAttendees().size());
     }
+
+    @Test
+    public void addAttendeeTest() {
+        swimPractice.addAttendee("Jacob");
+        assertEquals(4, swimPractice.getAttendees().size());
+        assertEquals("Jacob", swimPractice.getAttendees().get(3));
+    }
+
+    @Test
+    public void toStringTest() {
+        assertEquals("Swim Practice", swimPractice.toString());
+        assertEquals("Funeral", funeral.toString());
+    }
 }
