@@ -1,7 +1,7 @@
 package persistence;
 
-import model.EventList;
-import model.Event;
+import model.OccasionList;
+import model.Occasion;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class JsonReaderTest extends JsonTest {
     void jsonReaderTestInvalidFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            EventList el = reader.read();
+            OccasionList el = reader.read();
             fail("Did not throw an IO Exception.");
         } catch (IOException e) {
             // pass
@@ -30,9 +30,9 @@ public class JsonReaderTest extends JsonTest {
     void testReaderEmptyEventList() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyEventList.json");
         try {
-            EventList el = reader.read();
+            OccasionList el = reader.read();
             assertEquals("Event List 1", el.getName());
-            assertEquals(0, el.getEventsList().size());
+            assertEquals(0, el.getOccasionsList().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -49,12 +49,12 @@ public class JsonReaderTest extends JsonTest {
         List<String> attendees2 = new ArrayList<>();
         attendees2.add("Maiya");
         try {
-            EventList el = reader.read();
+            OccasionList el = reader.read();
             assertEquals("Event List 1", el.getName());
-            List<Event> events = el.getEventsList();
-            assertEquals(2, events.size());
-            toJsonTest("Practice", "October 25, 2005", attendees1, events.get(0));
-            toJsonTest("Birthday", "November 2, 2022", attendees2, events.get(1));
+            List<Occasion> occasions = el.getOccasionsList();
+            assertEquals(2, occasions.size());
+            toJsonTest("Practice", "October 25, 2005", attendees1, occasions.get(0));
+            toJsonTest("Birthday", "November 2, 2022", attendees2, occasions.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -68,12 +68,12 @@ public class JsonReaderTest extends JsonTest {
         List<String> attendees2 = new ArrayList<>();
         attendees2.add("Maiya");
         try {
-            EventList el = reader.read();
+            OccasionList el = reader.read();
             assertEquals("Event List 1", el.getName());
-            List<Event> events = el.getEventsList();
-            assertEquals(2, events.size());
-            toJsonTest("Practice", "October 25, 2005", attendees1, events.get(0));
-            toJsonTest("Birthday", "November 2, 2022", attendees2, events.get(1));
+            List<Occasion> occasions = el.getOccasionsList();
+            assertEquals(2, occasions.size());
+            toJsonTest("Practice", "October 25, 2005", attendees1, occasions.get(0));
+            toJsonTest("Birthday", "November 2, 2022", attendees2, occasions.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

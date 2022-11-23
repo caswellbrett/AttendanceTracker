@@ -1,6 +1,6 @@
 package persistence;
 
-import model.EventList;
+import model.OccasionList;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 // some code adapted from Carter, P (2021) JsonSerializationDemo (Version 20210307) [Source Code].
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
-// represents an object that transforms representation of event list to JSON file
+// represents an object that transforms representation of occasion list to JSON file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -29,9 +29,9 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON version of event list to JSON file
-    public void write(EventList el) {
-        JSONObject json = el.toJson();
+    // EFFECTS: writes JSON version of occasion list to JSON file
+    public void write(OccasionList ol) {
+        JSONObject json = ol.toJson();
         saveToFile(json.toString(TAB));
     }
 

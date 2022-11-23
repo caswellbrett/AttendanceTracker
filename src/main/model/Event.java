@@ -1,57 +1,47 @@
 package model;
 
-import org.json.JSONObject;
-import persistence.Writable;
+import java.util.Calendar;
+import java.util.Objects;
+import java.util.Date;
 
-import java.util.List;
+public class Event {
+    private Date dateLogged;
+    private String description;
 
-// represents an event with a name, date, and list of attendees
-public class Event implements Writable {
-    private String name;
-    private String date;
-    private List<String> attendees;
-
-    // REQUIRES: name of event does not already exist in event list and
-    //          date is an acceptable date format (ex. Feb 12, 2010)
-    // EFFECTS: constructs an event with a name, date, and attendee list
-    public Event(String name, String date, List<String> attendees) {
-        this.name = name;
-        this.date = date;
-        this.attendees = attendees;
+    // REQUIRES: description != null
+    // EFFECTS: creates an event with the date it was logged and its given description
+    public Event(String description) {
+        dateLogged = Calendar.getInstance().getTime();
+        this.description = description;
     }
 
-    // REQUIRES: !attendee.equals("")
-    // MODIFIES: this
-    // EFFECTS: adds an attendee to the list of attendees
-    public void addAttendee(String attendee) {
-        attendees.add(attendee);
+    public Date getDate() {
+        return dateLogged;
     }
 
-    // EFFECTS: converts event instance to JSON object
+    public String getDescription() {
+        return description;
+    }
+
     @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("name", name);
-        json.put("date", date);
-        json.put("attendees", attendees);
-        return json;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Event)) {
+            return false;
+        }
+        Event event = (Event) o;
+        return Objects.equals(dateLogged, event.dateLogged) && Objects.equals(getDescription(), event.getDescription());
     }
 
-    public String getName() {
-        return this.name;
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateLogged, getDescription());
     }
 
-    public String getDate() {
-        return this.date;
-    }
-
-    public List<String> getAttendees() {
-        return this.attendees;
-    }
-
-    // EFFECTS: returns the name of the event
     @Override
     public String toString() {
-        return name;
+        return description + dateLogged;
     }
 }

@@ -1,7 +1,9 @@
 package ui;
 
 import model.Event;
-import model.EventList;
+import model.EventLog;
+import model.Occasion;
+import model.OccasionList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -11,12 +13,15 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
 import java.io.File;
+import java.util.Iterator;
 
 // represents the main panel that is initially ran when the program starts
 public class GuiMain extends JPanel implements ActionListener, ListSelectionListener {
@@ -27,13 +32,13 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
     private JButton eventAddButton;
     private JButton attendeeAddButton;
     private JPanel buttonPanel;
-    private JList<Event> guiEventList;
+    private JList<Occasion> guiEventList;
     private JList guiAttendeeList;
     private JScrollPane eventScroll;
     private JScrollPane attendeeScroll;
-    private DefaultListModel<Event> eventListModel;
+    private DefaultListModel<Occasion> occasionListModel;
     private DefaultListModel<String> attendeeListModel;
-    private EventList eventList;
+    private OccasionList occasionList;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/eventListGui.json";
@@ -43,9 +48,9 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
     private JLabel logoPic;
     private JLabel logoText;
 
-    // EFFECTS: creates the main window with an event list, attendance list, buttons, and a logo
+    // EFFECTS: creates the main window with an occasion list, attendance list, buttons, and a logo
     public GuiMain() {
-        eventList = new EventList("User's Events");
+        occasionList = new OccasionList("User's Events");
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
 
@@ -68,6 +73,16 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         //frame.pack();
         frame.setSize(500, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Iterator<Event> events = EventLog.getInstance().iterator();
+                while (events.hasNext()) {
+                    System.out.println(events.next());
+                }
+                super.windowClosing(e);
+            }
+        });
     }
 
     // MODIFIES: this
@@ -95,9 +110,9 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
     // MODIFIES: this
     // EFFECTS: creates the events list and the attendees list panels
     public void createLists() {
-        eventListModel = new DefaultListModel<>();
+        occasionListModel = new DefaultListModel<>();
         guiEventList = new JList<>();
-        guiEventList.setModel(eventListModel);
+        guiEventList.setModel(occasionListModel);
         guiEventList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         guiEventList.addListSelectionListener(this);
 
@@ -148,10 +163,10 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
     }
 
     // EFFECTS: saves user's event list as JSON file
-    private void saveEventList() {
+    private void saveOccasionList() {
         try {
             jsonWriter.open();
-            jsonWriter.write(eventList);
+            jsonWriter.write(occasionList);
             jsonWriter.close();
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
@@ -160,11 +175,11 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
 
     // MODIFIES: this
     // EFFECTS: loads a JSON file
-    private void loadEventList() {
+    private void loadOccasionList() {
         try {
-            eventList = jsonReader.read();
-            for (Event event : eventList.getEventsList()) {
-                eventListModel.addElement(event);
+            occasionList = jsonReader.read();
+            for (Occasion occasion : occasionList.getOccasionsList()) {
+                occasionListModel.addElement(occasion);
             }
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
@@ -182,10 +197,10 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
             new AddAttendeeWindow(this);
         }
         if (e.getSource() == saveButton) {
-            saveEventList();
+            saveOccasionList();
         }
         if (e.getSource() == loadButton) {
-            loadEventList();
+            loadOccasionList();
         }
     }
 
@@ -194,26 +209,26 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
     @Override
     public void valueChanged(ListSelectionEvent e) {
         attendeeListModel.clear();
-        Event event = guiEventList.getSelectedValue();
-        for (String attendee : event.getAttendees()) {
+        Occasion occasion = guiEventList.getSelectedValue();
+        for (String attendee : occasion.getAttendees()) {
             attendeeListModel.addElement(attendee);
         }
     }
 
-    public DefaultListModel<Event> getGuiEvents() {
-        return eventListModel;
+    public DefaultListModel<Occasion> getGuiEvents() {
+        return occasionListModel;
     }
 
     public DefaultListModel<String> getGuiAttendees() {
         return attendeeListModel;
     }
 
-    public Event getSelectedEvent() {
+    public Occasion getSelectedEvent() {
         return guiEventList.getSelectedValue();
     }
 
-    public EventList getEventList() {
-        return eventList;
+    public OccasionList getEventList() {
+        return occasionList;
     }
 
     // EFFECTS: runs the main window

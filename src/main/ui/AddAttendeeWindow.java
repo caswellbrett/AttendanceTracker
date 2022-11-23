@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// represents the window created when you wish to add an attendee to an event
+// represents the window created when you wish to add an attendee to an occasion
 public class AddAttendeeWindow extends JFrame implements ActionListener {
     private JLabel attendeeLabel;
     private JButton attendeeButton;
@@ -14,7 +14,7 @@ public class AddAttendeeWindow extends JFrame implements ActionListener {
     private JPanel attendeePanel;
     private GuiMain gui;
 
-    // REQUIRES: a working main window with an event selected
+    // REQUIRES: a working main window with an occasion selected
     // EFFECTS: creates an 'Add Attendee' window
     public AddAttendeeWindow(GuiMain gui) {
         this.gui = gui;
@@ -43,7 +43,7 @@ public class AddAttendeeWindow extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds an attendee to selected event when add attendee button pushed
+    // EFFECTS: adds an attendee to selected occasion when add attendee button pushed
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == attendeeButton) {

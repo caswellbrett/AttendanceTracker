@@ -8,21 +8,21 @@ import java.util.List;
 import java.util.ArrayList;
 
 // represents a list of events
-public class EventList implements Writable {
-    private List<Event> listOfEvents;
+public class OccasionList implements Writable {
+    private List<Occasion> listOfOccasions;
     private String name;
 
     // EFFECTS: instantiates an event list
-    public EventList(String name) {
-        listOfEvents = new ArrayList<>();
+    public OccasionList(String name) {
+        listOfOccasions = new ArrayList<>();
         this.name = name;
     }
 
     // EFFECTS: Returns true if the given event name is already an event name in our list
     public boolean isNameTaken(String nameEntry) {
         boolean takenName = false;
-        for (Event event : listOfEvents) {
-            if (nameEntry.equals(event.getName())) {
+        for (Occasion occasion : listOfOccasions) {
+            if (nameEntry.equals(occasion.getName())) {
                 takenName = true;
                 break;
             }
@@ -30,21 +30,22 @@ public class EventList implements Writable {
         return takenName;
     }
 
-    // REQUIRES:    nameEntry cannot already be found in list of events
+    // REQUIRES:    nameEntry cannot already be found in list of occasions
     //              date must be valid date, with month being first 3 letters of valid month and
     //              day being a day of the applicable month
     // MODIFIES:    this
     // EFFECTS:     adds an event created by the user to our event list
-    public void addEvent(Event event) {
-        listOfEvents.add(event);
+    public void addOccasion(Occasion occasion) {
+        listOfOccasions.add(occasion);
+        EventLog.getInstance().logEvent(new Event("An occasion named \"" + occasion.getName() + "\" was added at "));
     }
 
-    // REQUIRES: searchName is the name of an event in our list of events
+    // REQUIRES: searchName is the name of an occasion in our list of events
     // EFFECTS: returns the index of the event list that the user wishes to search
-    public int findEventIndex(String searchName) {
+    public int findOccasionIndex(String searchName) {
         int index = 0;
-        for (Event event : listOfEvents) {
-            String name = event.getName();
+        for (Occasion occasion : listOfOccasions) {
+            String name = occasion.getName();
             if (name.equals(searchName)) {
                 break;
             }
@@ -98,16 +99,16 @@ public class EventList implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("events", eventsToJson());
+        json.put("occasions", occasionsToJson());
         return json;
     }
 
     // EFFECTS: returns events in event list as JSON array
-    private JSONArray eventsToJson() {
+    private JSONArray occasionsToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Event e : listOfEvents) {
-            jsonArray.put(e.toJson());
+        for (Occasion o : listOfOccasions) {
+            jsonArray.put(o.toJson());
         }
 
         return jsonArray;
@@ -118,14 +119,14 @@ public class EventList implements Writable {
     //              day input is an appropriate date for the given month
     // EFFECTS:     takes given year, month, and date and returns the event date in the
     //              correct format (ex. "Feb 12, 2022")
-    public String makeEventDate(int yearInput, String monthInput, int dayInput) {
-        String eventDate = (monthInput.substring(0,1).toUpperCase()
+    public String makeOccasionDate(int yearInput, String monthInput, int dayInput) {
+        String occasionDate = (monthInput.substring(0,1).toUpperCase()
                 + monthInput.substring(1,3).toLowerCase() + " " + dayInput + ", " + yearInput);
-        return eventDate;
+        return occasionDate;
     }
 
-    public List<Event> getEventsList() {
-        return listOfEvents;
+    public List<Occasion> getOccasionsList() {
+        return listOfOccasions;
     }
 
     public String getName() {

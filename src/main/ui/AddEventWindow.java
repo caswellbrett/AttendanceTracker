@@ -1,7 +1,7 @@
 package ui;
 
-import model.Event;
-import model.EventList;
+import model.Occasion;
+import model.OccasionList;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class AddEventWindow extends JFrame implements ActionListener {
     private JLabel dateLabel;
     private JTextField nameBox;
     private JLabel nameLabel;
-    private EventList eventList;
+    private OccasionList occasionList;
     private GuiMain gui;
     private JPanel datePanel;
     private static final int HEIGHT = 300;
@@ -30,7 +30,7 @@ public class AddEventWindow extends JFrame implements ActionListener {
     // EFFECTS: creates an 'Add Event' window, where a player can add info on events they wish to add
     public AddEventWindow(GuiMain gui) {
         this.gui = gui;
-        eventList = gui.getEventList();
+        occasionList = gui.getEventList();
         initializeComponents();
 
         addEventFrame.setSize(WIDTH, HEIGHT);
@@ -108,11 +108,11 @@ public class AddEventWindow extends JFrame implements ActionListener {
             int year = Integer.parseInt(yearString);
             String monthString = (String) monthsBox.getSelectedItem();
             int day = Integer.parseInt(dayString);
-            if (eventList.isValidDayInput(monthString, day)) {
-                Event userEvent = new Event(eventName,
-                        eventList.makeEventDate(year, monthString, day), new ArrayList<>());
-                eventList.addEvent(userEvent);
-                gui.getGuiEvents().addElement(userEvent);
+            if (occasionList.isValidDayInput(monthString, day)) {
+                Occasion userOccasion = new Occasion(eventName,
+                        occasionList.makeOccasionDate(year, monthString, day), new ArrayList<>());
+                occasionList.addOccasion(userOccasion);
+                gui.getGuiEvents().addElement(userOccasion);
             }
         } catch (NumberFormatException e) {
             // the code should not do anything if this error is caught

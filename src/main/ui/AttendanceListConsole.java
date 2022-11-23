@@ -1,7 +1,7 @@
 package ui;
 
-import model.Event;
-import model.EventList;
+import model.Occasion;
+import model.OccasionList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -16,7 +16,7 @@ import java.util.List;
 
 // the console interface of the Attendance List project
 public class AttendanceListConsole {
-    private EventList userList = new EventList("your event list");
+    private OccasionList userList = new OccasionList("your event list");
     private Scanner scanner = new Scanner(System.in);
     private String nameToAdd;
     private String dateToAdd;
@@ -29,9 +29,6 @@ public class AttendanceListConsole {
     public AttendanceListConsole() {
         System.out.println("Welcome to Attendance Tracker, "
                 + "where you can track attendance lists for all your events!");
-//        System.out.println("Please enter the name of your attendance tracker account:");
-//        String userListName = scanner.nextLine();
-//        userList.setName(userListName);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runConsole();
@@ -69,8 +66,8 @@ public class AttendanceListConsole {
         addEventName();
         addEventDate();
         addEventAttendees();
-        Event userEvent = new Event(nameToAdd, dateToAdd, attendeesToAdd);
-        userList.addEvent(userEvent);
+        Occasion userOccasion = new Occasion(nameToAdd, dateToAdd, attendeesToAdd);
+        userList.addOccasion(userOccasion);
         System.out.println("Event added!");
     }
 
@@ -81,11 +78,11 @@ public class AttendanceListConsole {
         System.out.println("Please enter the name of the event you wish to search: ");
         String searchName = scanner.nextLine();
         if (userList.isNameTaken(searchName)) {
-            int index = userList.findEventIndex(searchName);
-            System.out.println("Event name: " + userList.getEventsList().get(index).getName());
-            System.out.println("Event date: " + userList.getEventsList().get(index).getDate());
+            int index = userList.findOccasionIndex(searchName);
+            System.out.println("Event name: " + userList.getOccasionsList().get(index).getName());
+            System.out.println("Event date: " + userList.getOccasionsList().get(index).getDate());
             System.out.println("Event attendees:");
-            List<String> attendees = userList.getEventsList().get(index).getAttendees();
+            List<String> attendees = userList.getOccasionsList().get(index).getAttendees();
             for (String attendee : attendees) {
                 System.out.println(attendee);
             }
@@ -122,7 +119,7 @@ public class AttendanceListConsole {
         int dayInput = scanner.nextInt();
         scanner.nextLine();
         if (userList.isValidDayInput(monthInput, dayInput) && userList.isValidMonthInput(monthInput)) {
-            dateToAdd = userList.makeEventDate(yearInput, monthInput, dayInput);
+            dateToAdd = userList.makeOccasionDate(yearInput, monthInput, dayInput);
         } else {
             System.out.println("Invalid input. Please try again.");
             addEventDate();

@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventTest {
-    Event swimPractice;
+public class OccasionTest {
+    Occasion swimPractice;
     List<String> swimPracticeAttendees = new ArrayList<>();
-    Event funeral;
+    Occasion funeral;
     List<String> funeralAttendees = new ArrayList<>();
 
     @BeforeEach
@@ -18,13 +18,13 @@ public class EventTest {
         swimPracticeAttendees.add("Claire");
         swimPracticeAttendees.add("Megan");
         swimPracticeAttendees.add("Maelle");
-        swimPractice = new Event("Swim Practice", "Oct 12, 2022", swimPracticeAttendees);
+        swimPractice = new Occasion("Swim Practice", "Oct 12, 2022", swimPracticeAttendees);
 
-        funeral = new Event("Funeral", "Dec 25, 2030", funeralAttendees);
+        funeral = new Occasion("Funeral", "Dec 25, 2030", funeralAttendees);
     }
 
     @Test
-    public void eventConstructorTest() {
+    public void occasionConstructorTest() {
         assertEquals("Swim Practice", swimPractice.getName());
         assertEquals("Oct 12, 2022", swimPractice.getDate());
         assertEquals(3, swimPractice.getAttendees().size());
@@ -38,7 +38,7 @@ public class EventTest {
     }
 
     @Test
-    public void addAttendeeTest() {
+    public void addOccasionTest() {
         swimPractice.addAttendee("Jacob");
         assertEquals(4, swimPractice.getAttendees().size());
         assertEquals("Jacob", swimPractice.getAttendees().get(3));
