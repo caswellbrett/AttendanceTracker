@@ -5,15 +5,15 @@ import persistence.Writable;
 
 import java.util.List;
 
-// represents an event with a name, date, and list of attendees
+// represents an occasion with a name, date, and list of attendees
 public class Occasion implements Writable {
     private String name;
     private String date;
     private List<String> attendees;
 
-    // REQUIRES: name of event does not already exist in event list and
+    // REQUIRES: name of occasion does not already exist in occasion list and
     //          date is an acceptable date format (ex. Feb 12, 2010)
-    // EFFECTS: constructs an event with a name, date, and attendee list
+    // EFFECTS: constructs an occasion with a name, date, and attendee list
     public Occasion(String name, String date, List<String> attendees) {
         this.name = name;
         this.date = date;
@@ -27,7 +27,7 @@ public class Occasion implements Writable {
         attendees.add(attendee);
     }
 
-    // EFFECTS: converts event instance to JSON object
+    // EFFECTS: converts occasion instance to JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -49,7 +49,7 @@ public class Occasion implements Writable {
         return this.attendees;
     }
 
-    // EFFECTS: returns the name of the event
+    // EFFECTS: returns the name of the occasion
     @Override
     public String toString() {
         return name;

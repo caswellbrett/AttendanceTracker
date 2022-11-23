@@ -7,18 +7,18 @@ import persistence.Writable;
 import java.util.List;
 import java.util.ArrayList;
 
-// represents a list of events
+// represents a list of occasions
 public class OccasionList implements Writable {
     private List<Occasion> listOfOccasions;
     private String name;
 
-    // EFFECTS: instantiates an event list
+    // EFFECTS: instantiates an occasion list
     public OccasionList(String name) {
         listOfOccasions = new ArrayList<>();
         this.name = name;
     }
 
-    // EFFECTS: Returns true if the given event name is already an event name in our list
+    // EFFECTS: Returns true if the given occasion name is already an occasion name in our list
     public boolean isNameTaken(String nameEntry) {
         boolean takenName = false;
         for (Occasion occasion : listOfOccasions) {
@@ -34,14 +34,14 @@ public class OccasionList implements Writable {
     //              date must be valid date, with month being first 3 letters of valid month and
     //              day being a day of the applicable month
     // MODIFIES:    this
-    // EFFECTS:     adds an event created by the user to our event list
+    // EFFECTS:     adds an occasion created by the user to our occasion list
     public void addOccasion(Occasion occasion) {
         listOfOccasions.add(occasion);
         EventLog.getInstance().logEvent(new Event("An occasion named \"" + occasion.getName() + "\" was added at "));
     }
 
-    // REQUIRES: searchName is the name of an occasion in our list of events
-    // EFFECTS: returns the index of the event list that the user wishes to search
+    // REQUIRES: searchName is the name of an occasion in our list of occasions
+    // EFFECTS: returns the index of the occasion list that the user wishes to search
     public int findOccasionIndex(String searchName) {
         int index = 0;
         for (Occasion occasion : listOfOccasions) {
@@ -94,7 +94,7 @@ public class OccasionList implements Writable {
                 || monthInput.equals("dec");
     }
 
-    // EFFECTS: transforms event list in JSON file
+    // EFFECTS: transforms occasion list in JSON file
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -103,7 +103,7 @@ public class OccasionList implements Writable {
         return json;
     }
 
-    // EFFECTS: returns events in event list as JSON array
+    // EFFECTS: returns occasions in occasion list as JSON array
     private JSONArray occasionsToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -117,12 +117,11 @@ public class OccasionList implements Writable {
 
     // REQUIRES:    month input is the first three letters of a month on the calendar
     //              day input is an appropriate date for the given month
-    // EFFECTS:     takes given year, month, and date and returns the event date in the
+    // EFFECTS:     takes given year, month, and date and returns the occasion date in the
     //              correct format (ex. "Feb 12, 2022")
     public String makeOccasionDate(int yearInput, String monthInput, int dayInput) {
-        String occasionDate = (monthInput.substring(0,1).toUpperCase()
+        return (monthInput.substring(0,1).toUpperCase()
                 + monthInput.substring(1,3).toLowerCase() + " " + dayInput + ", " + yearInput);
-        return occasionDate;
     }
 
     public List<Occasion> getOccasionsList() {

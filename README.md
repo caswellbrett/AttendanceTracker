@@ -76,3 +76,28 @@ Tue Nov 22 16:08:49 PST 2022
 Tue Nov 22 16:09:00 PST 2022
 - An occasion named "Wedding" was added at
 Tue Nov 22 16:09:40 PST 2022
+
+## Phase 4: Task 3
+If I were to refactor my project, there are a
+few things I would do to improve the design of
+my project. Firstly, I would seperate GuiMain
+into 2 classes. The first class would be
+solely responsible for running the project and
+the second class would be responsible for
+generating/operating the main window. This
+design change would improve cohesion since
+our current class handles two different
+responsibilities. I would also wish to improve
+cohesion by refactoring EventList into two
+classes. Currently, there are two
+responsibilities associated with the EventList
+class: (1) keep a list of events and (2) 
+generate appropriate dates for these events.
+As a result, making a Date class would ensure
+each class handles only one responsibility.
+Lastly, I would potentially consider 
+implementing an abstract class called "Window",
+but this implementation would come with 
+trade-offs. Although this refactoring would 
+reduce duplication in code, it would also 
+increase coupling between classes.

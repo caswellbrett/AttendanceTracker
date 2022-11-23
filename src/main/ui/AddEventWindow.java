@@ -22,7 +22,6 @@ public class AddEventWindow extends JFrame implements ActionListener {
     private JLabel nameLabel;
     private OccasionList occasionList;
     private GuiMain gui;
-    private JPanel datePanel;
     private static final int HEIGHT = 300;
     private static final int WIDTH = 300;
 
@@ -76,7 +75,7 @@ public class AddEventWindow extends JFrame implements ActionListener {
     // EFFECTS: creates a panel to be added to 'Add Event' panel, allowing user to input year,
     //          month, day, and name
     public void createDatePanel() {
-        datePanel = new JPanel();
+        JPanel datePanel = new JPanel();
         datePanel.setLayout(new FlowLayout());
 
         yearBox.setPreferredSize(new Dimension(100, 20));
@@ -93,9 +92,8 @@ public class AddEventWindow extends JFrame implements ActionListener {
 
     // EFFECTS: returns an array of the months of the year
     public String[] getMonths() {
-        String[] monthList = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+        return new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
                 "Nov", "Dec"};
-        return monthList;
     }
 
     // MODIFIES: this, gui

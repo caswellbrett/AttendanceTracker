@@ -76,9 +76,8 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Iterator<Event> events = EventLog.getInstance().iterator();
-                while (events.hasNext()) {
-                    System.out.println(events.next());
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println(event);
                 }
                 super.windowClosing(e);
             }
