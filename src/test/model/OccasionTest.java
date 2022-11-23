@@ -5,13 +5,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class OccasionTest {
-    Occasion swimPractice;
-    List<String> swimPracticeAttendees = new ArrayList<>();
-    Occasion funeral;
-    List<String> funeralAttendees = new ArrayList<>();
+    private Occasion swimPractice;
+    private List<String> swimPracticeAttendees = new ArrayList<>();
+    private Occasion funeral;
+    private List<String> funeralAttendees = new ArrayList<>();
+    private EventLog theLog;
 
     @BeforeEach
     public void setup() {
@@ -21,6 +23,8 @@ public class OccasionTest {
         swimPractice = new Occasion("Swim Practice", "Oct 12, 2022", swimPracticeAttendees);
 
         funeral = new Occasion("Funeral", "Dec 25, 2030", funeralAttendees);
+
+        theLog = EventLog.getInstance();
     }
 
     @Test
