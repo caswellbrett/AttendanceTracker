@@ -24,23 +24,6 @@ public class Event {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Event)) {
-            return false;
-        }
-        Event event = (Event) o;
-        return Objects.equals(dateLogged, event.dateLogged) && Objects.equals(getDescription(), event.getDescription());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(dateLogged, getDescription());
-    }
-
-    @Override
     public String toString() {
         return description + dateLogged;
     }
