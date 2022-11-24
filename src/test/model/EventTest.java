@@ -31,7 +31,8 @@ public class EventTest {
     @Test
     public void eventEqualsTest() {
         assertFalse(event1.equals(event2));
-        assertTrue(event1.equals(event3));
+        assertTrue(event1.equals(event1));
+        assertFalse(event1.equals("String"));
     }
 
     @Test
