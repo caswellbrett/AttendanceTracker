@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class OccasionTest {
@@ -52,5 +51,10 @@ public class OccasionTest {
     public void toStringTest() {
         assertEquals("Swim Practice", swimPractice.toString());
         assertEquals("Funeral", funeral.toString());
+    }
+
+    @Test
+    public void eventLogIteratorTest() {
+        
     }
 }

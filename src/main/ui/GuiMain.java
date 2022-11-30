@@ -21,7 +21,6 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
 import java.io.File;
-import java.util.Iterator;
 
 // represents the main panel that is initially ran when the program starts
 public class GuiMain extends JPanel implements ActionListener, ListSelectionListener {
