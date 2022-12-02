@@ -83,7 +83,7 @@ public class OccasionListTest {
     }
 
     @Test
-    public void addEventTest() {
+    public void addOccasionTest() {
         occasionList.addOccasion(swimPractice);
         occasionList.addOccasion(funeral);
 
