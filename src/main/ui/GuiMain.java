@@ -207,7 +207,6 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
     @Override
     public void valueChanged(ListSelectionEvent e) {
         attendeeListModel.clear();
-
         Occasion occasion = guiEventList.getSelectedValue();
         for (String attendee : occasion.getAttendees()) {
             attendeeListModel.addElement(attendee);
