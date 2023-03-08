@@ -206,6 +206,7 @@ public class GuiMain extends JPanel implements ActionListener, ListSelectionList
     // EFFECTS: changes the value of attendee panel when a different event is selected
     @Override
     public void valueChanged(ListSelectionEvent e) {
+
         attendeeListModel.clear();
         Occasion occasion = guiEventList.getSelectedValue();
         for (String attendee : occasion.getAttendees()) {
