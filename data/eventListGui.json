@@ -1,0 +1,21 @@
+{
+    "name": "User's Events",
+    "occasions": [
+        {
+            "date": "Nov 23, 2022",
+            "attendees": [
+                "Swimmer",
+                "Parent"
+            ],
+            "name": "Practice"
+        },
+        {
+            "date": "Nov 23, 2022",
+            "attendees": [
+                "Bride",
+                "Groom"
+            ],
+            "name": "Wedding"
+        }
+    ]
+}

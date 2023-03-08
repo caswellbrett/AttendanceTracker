@@ -1,0 +1,11 @@
+{
+    "name": "your event list",
+    "events": [{
+        "date": "Feb 22, 22",
+        "attendees": [
+            "ryan seacrest",
+            "joni mitchell"
+        ],
+        "name": "Cute"
+    }]
+}
